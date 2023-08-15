@@ -1,0 +1,12 @@
+rules:
+  - accountId: VIP
+    allowedNumberOfRequests: 5
+    timeInterval: MINUTES
+  - accountId:
+    requestType: login
+    allowedNumberOfRequests: 5
+    timeInterval: MINUTES
+  - accountId:
+    clientIp: 127.0.0.1
+    allowedNumberOfRequests: 10
+    timeInterval: MINUTES
