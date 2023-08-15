@@ -29,17 +29,15 @@ public class JedisRateLimitService implements RateLimitService {
         Map<String, RateLimitRule> rulesToApply = ruleService.getRulesToApply(requestDescriptors);
         log.info("Found rules to apply: {}", rulesToApply.size());
 
-        boolean flag = false;
-
         for (Map.Entry<String, RateLimitRule> ruleEntry : rulesToApply.entrySet()) {
             boolean result = checkAvailability(ruleEntry.getKey(), ruleEntry.getValue());
 
-            if (Boolean.TRUE.equals(result)) {
-                flag = true;
+            if (result) {
+                return true;
             }
         }
 
-        return flag;
+        return false;
     }
 
     private boolean checkAvailability(String key, RateLimitRule rule) {
